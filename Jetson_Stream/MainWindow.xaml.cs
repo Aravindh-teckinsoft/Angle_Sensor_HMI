@@ -49,16 +49,16 @@ namespace Jetson_Stream
             {
                 try
                 {
-                    SetStatus("Connecting...");
+                    //SetStatus("Connecting...");
                     _client = new TcpClient();
                     await _client.ConnectAsync("192.168.10.1", 7000);
                     _stream = _client.GetStream();
-                    SetStatus("Connected");
+                    //SetStatus("Connected");
                     await ReceiveLoopAsync();
                 }
                 catch
                 {
-                    SetStatus("Disconnected — retrying...");
+                    //SetStatus("Disconnected — retrying...");
                     await Task.Delay(2000);
                 }
             }
@@ -105,7 +105,7 @@ namespace Jetson_Stream
                             t.GetString() == "telemetry")
                         {
                             double fps = root.GetProperty("fps").GetDouble();
-                            SetStatus($"{fps:F1}");
+                            //SetStatus($"{fps:F1}");
                         }
                     }
                     catch { /* ignore malformed line */ }
@@ -179,7 +179,7 @@ namespace Jetson_Stream
             }
             catch (Exception ex)
             {
-                SetStatus($"Send error: {ex.Message}");
+                //SetStatus($"Send error: {ex.Message}");
             }
         }
 
@@ -214,26 +214,26 @@ namespace Jetson_Stream
 
         void ApplyParams_Click(object sender, RoutedEventArgs e)
         {
-            if (!int.TryParse(YOffsetBox.Text, out int yOffset) ||
-                !int.TryParse(YStartBox.Text, out int yStart) ||
-                !int.TryParse(YEndBox.Text, out int yEnd))
-            {
-                MessageBox.Show("Enter valid integers for all params.");
-                return;
-            }
+            //if (!int.TryParse(YOffsetBox.Text, out int yOffset) ||
+            //    !int.TryParse(YStartBox.Text, out int yStart) ||
+            //    !int.TryParse(YEndBox.Text, out int yEnd))
+            //{
+            //    MessageBox.Show("Enter valid integers for all params.");
+            //    return;
+            //}
 
-            SendCommand(new
-            {
-                cmd = "SET_PARAM",
-                data = new { Y_offset = yOffset, Y_start = yStart, Y_end = yEnd }
-            });
+            //SendCommand(new
+            //{
+            //    cmd = "SET_PARAM",
+            //    data = new { Y_offset = yOffset, Y_start = yStart, Y_end = yEnd }
+            //});
         }
 
         // ==============================
         // HELPERS
         // ==============================
-        void SetStatus(string text)
-            => Dispatcher.Invoke(() => FpsText.Text = text);
+        //void SetStatus(string text)
+        //    => Dispatcher.Invoke(() => FpsText.Text = text);
     }
 }
 /*using System;

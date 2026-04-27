@@ -1,0 +1,46 @@
+﻿<Window x:Class="Jetson_Stream.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jetson_Stream"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        mc:Ignorable="d"
+        Title="Jetson Dashboard" Height="600" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Controls -->
+        <StackPanel Orientation="Horizontal">
+            <Button Content="START" Click="Start_Click" Width="80"/>
+            <Button Content="PAUSE" Click="Pause_Click" Width="80" Margin="10,0"/>
+            <Button Content="STOP" Click="Stop_Click" Width="80"/>
+
+            <TextBlock Text="FPS:" Margin="30,0"/>
+            <TextBlock x:Name="FpsText"/>
+        </StackPanel>
+
+        <!-- VIDEO AREA — force stretch to fill row -->
+        <Image x:Name="VideoImage" 
+       Grid.Row="1" 
+       Stretch="Uniform"
+       HorizontalAlignment="Stretch"
+       VerticalAlignment="Stretch"
+       MinHeight="100"
+       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+
+        <!-- Params -->
+        <StackPanel Grid.Row="2">
+            <TextBox x:Name="YOffsetBox"/>
+            <TextBox x:Name="YStartBox"/>
+            <TextBox x:Name="YEndBox"/>
+            <Button Content="Apply Params" Click="ApplyParams_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
